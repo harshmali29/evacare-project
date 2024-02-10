@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+</head>
+
+<style>
+    /*=============== GOOGLE FONTS ===============*/
+    @import url("https://fonts.googleapis.com/css2?family=Sometype+Mono&display=swap");
+    @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@500&family=Caveat:wght@600&family=Cookie&family=Grand+Hotel&family=Indie+Flower&family=Josefin+Sans:ital,wght@0,400;1,500;1,600&family=Montserrat:wght@200;500&family=Nova+Square&family=Nunito:wght@300&family=Oswald&family=PT+Serif&family=Play:wght@700&family=Playfair+Display:wght@500&family=Poppins&family=Prompt:wght@300&family=Raleway:ital,wght@0,100;0,200;0,300;0,500;1,100&family=Roboto+Mono&family=Roboto:wght@500&family=Sacramento&family=Tilt+Neon&display=swap');
+
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family: "Sometype Mono", monospace;
+        height: 100vh;
+    }
+
+    .slider-container {
+        position: relative;
+        overflow: hidden;
+        width: 100vw;
+        height: 100vh;
+    }
+
+    .left-slide {
+        height: 100%;
+        width: 35%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: transform 0.5s ease-in-out;
+    }
+
+    .left-slide>div {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        /* background-color: #161616; */
+        background-image: url(SL-012421-39970-05.jpg);
+        background-repeat: no-repeat;
+        background-size: auto;
+    }
+
+    .left-slide h1 {
+        text-align: center;
+        font-family: josefin sans;
+        color: green;
+        font-style: italic;
+        font-size: 50px;
+        margin-bottom: 10px;
+        margin-top: -30px;
+    }
+
+    .left-slide h2 {
+        font-style: italic;
+        font-family: josefin sans;
+        color: black;
+        font-size: 35px;
+        margin-bottom: 10px;
+        margin-top: 20px;
+    }
+
+    .left-slide p {
+        width: 70%;
+        font-family: Nova Square;
+        color: black;
+        text-align: center;
+        font-size: 20px;
+        margin-bottom: 10px;
+        margin-top: 50px;
+    }
+
+    .right-slide {
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 35%;
+        width: 65%;
+        transition: transform 0.5s ease-in-out;
+    }
+
+    .right-slide>div {
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+        min-height: 100%;
+        width: 100%;
+    }
+
+    button {
+        background-color: #ffffff77;
+        border: none;
+        color: #000000;
+        cursor: pointer;
+        font-size: 16px;
+        padding: 15px;
+        transition: background-color 0.5s ease;
+    }
+
+    button:hover {
+        background-color: #ffffffa1;
+    }
+
+    button:focus {
+        outline: none;
+    }
+
+    .slider-container .action-buttons button {
+        position: absolute;
+        left: 35%;
+        top: 50%;
+        z-index: 100;
+    }
+
+    .slider-container .action-buttons .down-button {
+        transform: translateX(-100%);
+        border-radius: 50% 0 0 50%;
+    }
+
+    .slider-container .action-buttons .up-button {
+        transform: translateY(-100%);
+        border-radius: 0 50% 50% 0;
+    }
+</style>
+
+<body>
+
+
+    <section>
+        <div class="slider-container col-xl-6 col-lg-6">
+            <div class="left-slide">
+                <div style="color: #a0b5c2">
+                    <h1>Hair Oil</h1>
+                    <h2>Hair Oil</h2>
+                    <p>.Glycolic Acid
+                        .Lactic Acid
+                        .Salicylic 2%
+                        .Niacinamide
+                        .Vitamin E
+                        .Transperent Gel based Facewash</p>
+                </div>
+                <div style="color: #c8c9a0">
+                    <h1>Conditioner</h1>
+                    <h2>Hair Conditioner</h2>
+                    <p>.Glycolic Acid
+                        .Lactic Acid
+                        .Salicylic 2%
+                        .Niacinamide
+                        .Vitamin E
+                        .Transperent Gel based Facewash</p>
+                </div>
+                <div style="color: #8485d6">
+                    <h1>Keratin Shampoo</h1>
+                    <h2>Hair Shampoo</h2>
+                    <p>.Glycolic Acid
+                        .Lactic Acid
+                        .Salicylic 2%
+                        .Niacinamide
+                        .Vitamin E
+                        .Transperent Gel based Facewash</p>
+
+                </div>
+                <div style="color: #000000">
+                    <h1>Hydra Medicare</h1>
+                    <h2>Facewash</h2>
+                    <p>.Glycolic Acid
+                        .Lactic Acid
+                        .Salicylic 2%
+                        .Niacinamide
+                        .Vitamin E
+                        .Transperent Gel based Facewash</p>
+                </div>
+            </div>
+            <div class="right-slide">
+                <div style="background-image: url('oxybio\ main.copy.jpg')">
+                </div>
+                <div style="background-image: url('keratin-sulphate-free-shampoo-1000x1000.webp')">
+                </div>
+                <div
+                    style="background-image: url('https://images.unsplash.com/photo-1614732414444-096e5f1122d5?auto=format&fit=crop&q=80&w=1374&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')">
+                </div>
+                <div
+                    style="background-image: url('https://images.unsplash.com/photo-1614730321146-b6fa6a46bcb4?auto=format&fit=crop&q=80&w=1374&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')">
+                </div>
+            </div>
+            <div class="action-buttons">
+                <button class="down-button"><i class="fa-solid fa-caret-down"></i></button>
+                <button class="up-button"><i class="fa-solid fa-caret-up"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const sliderContainer = document.querySelector(".slider-container");
+        const slideRight = document.querySelector(".right-slide");
+        const slideLeft = document.querySelector(".left-slide");
+        const upButton = document.querySelector(".up-button");
+        const downButton = document.querySelector(".down-button");
+        const slidesLength = slideRight.querySelectorAll("div").length;
+
+        let activeSlideIndex = 0;
+
+        slideLeft.style.top = `-${(slidesLength - 1) * 100}vh`;
+
+        upButton.addEventListener("click", () => changeSlide("up"));
+        downButton.addEventListener("click", () => changeSlide("down"));
+
+        const changeSlide = (direction) => {
+            const sliderHeight = sliderContainer.clientHeight;
+            if (direction === "up") {
+                activeSlideIndex++;
+                if (activeSlideIndex > slidesLength - 1) {
+                    activeSlideIndex = 0;
+                }
+            } else if (direction === "down") {
+                activeSlideIndex--;
+                if (activeSlideIndex < 0) {
+                    activeSlideIndex = slidesLength - 1;
+                }
+            }
+
+            slideRight.style.transform = `translateY(-${activeSlideIndex * sliderHeight
+                }px)`;
+            slideLeft.style.transform = `translateY(${activeSlideIndex * sliderHeight
+                }px)`;
+        };
+
+    </script>
+</body>
+
+</html>

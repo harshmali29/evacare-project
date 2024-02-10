@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"> -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@500&family=Caveat:wght@600&family=Cookie&family=Grand+Hotel&family=Indie+Flower&family=Montserrat:wght@200;500&family=Nova+Square&family=Nunito:wght@300&family=Oswald&family=PT+Serif&family=Play:wght@700&family=Playfair+Display:wght@500&family=Poppins&family=Prompt:wght@300&family=Raleway:ital,wght@0,100;0,200;0,300;0,500;1,100&family=Roboto+Mono&family=Roboto:wght@100;500&family=Sacramento&family=Tilt+Neon&display=swap');
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            /* background-color: #f8f5f2; */
+            background-image: url(91352.jpg);
+        }
+
+        h3 {
+            color: #00214d;
+        }
+
+        p {
+            color: #1b2d45;
+        }
+
+        .button {
+            color: white;
+            background-color: rgb(72, 96, 72);
+            outline: none;
+            padding: 1.2rem;
+            border: none;
+            border-radius: 3px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: box-shadow 0.3s;
+        }
+
+        .button:hover {
+            box-shadow: 0 8px 10px -5px rgba(31, 18, 53, 0.6);
+        }
+
+        .button:active {
+            box-shadow: none;
+        }
+
+        .link {
+            font-size: 1.2rem;
+            text-decoration: none;
+            color: #68b56b;
+            margin-right: 0.5rem;
+        }
+
+        .header {
+            background-color: rgba(0, 0, 0, 0.622);
+            width: 100%;
+            height: 80px;
+            padding: 1rem;
+        }
+
+        .menu {
+            max-width: 1000px;
+            height: 100%;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin: 0 auto;
+        }
+
+        .cart-total {
+            width: 25px;
+            height: 25px;
+            border-radius: 999rem;
+            background-color: #fffffe;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cart-wrapper {
+            border-radius: 5px;
+            width: 300px;
+            background-color: #d7f3d4;
+            position: absolute;
+            top: 4rem;
+            border: 1px solid #f2f2f2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .cart-wrapper ul {
+            margin: 0;
+            padding: 0;
+
+        }
+
+        .cart-wrapper h3 {
+            color: #213c22;
+        }
+
+        .cart-wrapper li {
+            display: flex;
+            align-items: center;
+            list-style-type: none;
+            padding: 0 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .cart-wrapper li p {
+            display: inline-block;
+            margin: 0;
+            text-align: center;
+            font-size: 25px;
+            padding-right: 1rem;
+            color: red;
+            font-weight: 900;
+        }
+
+        .cart-wrapper li p:hover {
+            cursor: pointer;
+        }
+
+        .product-title {
+            font-weight: 700;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        .cards {
+            background-attachment: fixed;
+            margin: 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-rows: auto;
+            gap: 1rem;
+        }
+
+        .card {
+            max-width: 300px;
+            background-color: #fffffe;
+            text-align: center;
+            padding: 1.2rem;
+            box-shadow: 0 5px 15px -10px rgba(31, 18, 53, 0.6);
+            border-radius: 5px;
+            margin: 0 auto;
+        }
+
+        .title {
+            font-size: 25px;
+            font-family: Arial, Helvetica, sans-serif;
+            margin-bottom: 30px;
+            color: rgb(19, 57, 19);
+        }
+
+        .about {
+            text-align: left;
+        }
+
+        .author {
+            text-align: center;
+            margin-top: 0;
+            font-size: 0.9rem;
+        }
+
+
+        /* tooltip */
+
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            border-bottom: 1px dotted black;
+
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            /* left: 50%; */
+            margin-left: -60px;
+            opacity: 0;
+            white-space: nowrap;
+
+            transition: opacity 0.3s;
+        }
+
+        .tooltip .tooltiptext::after {
+            content: " ";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #555 transparent transparent transparent;
+        }
+
+        .tooltiptext {
+            transform: translate(-50%, 0);
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .already_exist {
+            color: red;
+        }
+
+
+
+        .card-img img {
+            width: 200px;
+        }
+
+        .main-p {
+            margin-top: 50px;
+            align-items: center;
+
+        }
+
+        .p-p h3 {
+            font-size: 15px;
+            font-family: 'Tilt Neon', sans-serif;
+            align-items: center;
+            display: inline-block;
+            padding: 7px 5px;
+            background-color: #f8f9fa;
+            border-radius: 3px;
+            color: rgb(43, 62, 34);
+            border: solid 1px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="header">
+        <nav class="menu">
+            <a href="#" class="link" id="open-cart">Cart</a>
+            <span class="cart-total" id="productsInCart">0</span>
+            <section class="cart-wrapper hide" id="cart">
+                <h3>EVA Care Products</h3>
+                <ul id="products"></ul>
+            </section>
+        </nav>
+    </header>
+    <main>
+        <section class="cards">
+            <article class="card" data-product="Facewash">
+                <div class="card-img">
+                    <img src="img2.jpg" alt="">
+                </div>
+                <h3 class="title">Facewash</h3>
+                <div class="p-p">
+                    <h3>Product Price</h3>
+                    <h3>199.00</h3>
+                </div>
+                <!-- <div class="qut">
+                    <p>Select Quantity</p>
+                    <select name="Quantity" id="Quantity" onchange="updateProductPrice()">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </div> -->
+                <button class="button" id="add-to-cart-button">Add to cart</button>
+            </article>
+            <article class="card" data-product="Keratin Shampoo">
+                <div class="card-img">
+                    <img src="img2.jpg" alt="">
+                </div>
+                <h3 class="title">Keratin Shampoo</h3>
+                <div class="p-p">
+                    <h3>Product Price</h3>
+                    <h3>399.00</h3>
+                </div>
+                <!-- <div class="qut">
+                    <p>Select Quantity</p>
+                    <select name="Quantity" id="Quantity" onchange="updateProductPrice()">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </div> -->
+                <button class="button">Add to cart</button>
+            </article>
+            <article class="card" data-product="Conditioner">
+                <div class="card-img">
+                    <img src="img2.jpg" alt="">
+                </div>
+                <h3 class="title">Conditioner</h3>
+
+                <div class="p-p">
+                    <h3>Product Price</h3>
+                    <h3>399.00</h3>
+                </div>
+                <!-- <div class="qut">
+                    <p>Select Quantity</p>
+                    <select name="Quantity" id="Quantity" onchange="updateProductPrice()">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </div> -->
+                <button class="button">Add to cart</button>
+            </article>
+            <article class="card" data-product="Hair Oil">
+                <div class="card-img">
+                    <img src="img2.jpg" alt="">
+                </div>
+                <h3 class="title">Hair Oil</h3>
+                <div class="p-p">
+                    <h3>Product Price</h3>
+                    <h3>250.00</h3>
+                </div>
+                <!-- <div class="qut">
+                    <p>Select Quantity</p>
+                    <select name="Quantity" id="Quantity" onchange="updateProductPrice()">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </div> -->
+                <button class="button">Add to cart</button>
+            </article>
+        </section>
+    </main>
+    <script>
+        //Variables to use and it's a mix of global and local variables
+
+
+        //GitHub:  https://github.com/Shirak22/JAVASCRIPT__schoolExercises/tree/master/vecka2/shopping-cart-exercise
+
+
+
+        let shoppingCart = [];
+        let products = document.getElementsByTagName('button');
+        let cartProducts = '';
+
+
+        //
+        function renderTheCards() {
+            for (let i = 0; i < products.length; i++) {
+                products[i].addEventListener('click', function (event) {
+                    let product = event.target.parentNode.getAttribute('data-product');
+
+                    //checking if the product is Existing in the array 
+                    if (!isExist(shoppingCart, product)) {
+                        shoppingCart.push(product);
+                    } else {
+
+                        articleWarning(products[i].parentNode);
+                        toolTip(products[i], product)
+                    }
+
+                    updateCart();
+
+                });
+            }
+        }
+
+        renderTheCards();
+        //Function declarations, add code inside {}
+        function updateCart() {
+            listProductsInCart();
+            document.getElementById('products').innerHTML = cartProducts;
+            document.getElementById('productsInCart').innerHTML = shoppingCart.length;
+            renderDeleteButton();
+        }
+
+        function listProductsInCart() {
+            cartProducts = '';
+            for (let i = 0; i < shoppingCart.length; i++) {
+                cartProducts += '<li><p data-items = "' + shoppingCart[i] + '"> &#128465; </p><span class="product-title">Titel: </span>' + shoppingCart[i] + '</li>';
+
+            }
+
+        }
+        //<span>&#128465;</span>
+        document.getElementById('open-cart').addEventListener('click', function () {
+            document.getElementById('cart').classList.toggle('hide');
+        });
+
+        function renderDeleteButton() {
+            let items = document.querySelectorAll('#products > li');
+            if (items !== undefined && items !== null) {
+                items.forEach((element) => {
+                    let figure = element.childNodes[0];
+                    let text = element.childNodes[0].getAttribute('data-items');
+
+                    figure.addEventListener('click', () => {
+                        let articles = document.querySelectorAll('.cards > .card');
+                        deleteListing(shoppingCart, text);
+
+                        articles.forEach(article => {
+
+                            if (article.getAttribute('data-product') === text && shoppingCart.includes(text) == false) {
+                                deleteWarning(article);
+                                article.querySelector('button').classList.remove('tooltip');
+                                article.querySelector('button').innerHTML = ' Add to cart ';
+
+                            }
+                        });
+                        listProductsInCart();
+                        updateCart();
+                    });
+                });
+            }
+        }
+
+        // deleting the items from the shop cart
+        function deleteListing(arr, item) {
+            if (arr.includes(item)) {
+                let itemsIndex = arr.indexOf(item);
+                arr.splice(itemsIndex, 1);
+            }
+        }
+        //
+        function isExist(arr, object) {
+            let obj = arr.includes(object) ? true : false;
+            return obj;
+        }
+
+
+        function toolTip(button, title) {
+            if (!button.classList.contains('tooltip')) {
+                let span = document.createElement('span');
+                span.classList.add('tooltiptext');
+                span.textContent = '${title}', already, Added;
+                button.classList.add('tooltip');
+                button.appendChild(span);
+            }
+        }
+
+        function articleWarning(article) {
+            let exist = article.querySelector('.already_exist');
+            let createText = document.createElement('p');
+            if (exist == null) {
+                createText.textContent = 'Already exists in the cart! ';
+                createText.classList.add('already_exist');
+                article.appendChild(createText);
+            }
+        }
+
+
+        function deleteWarning(article) {
+
+            if (article.querySelector('.already_exist') !== null) {
+                article.querySelector('.already_exist').remove();
+            }
+        }
+    </script>
+
+
+</body>
+
+</html>

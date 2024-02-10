@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD in JavaScript</title>
+</head>
+
+<body>
+
+    <h1>CRUD in JavaScript</h1>
+
+    <div id="output"></div>
+
+    <script>
+        // Sample data store (in-memory array)
+        let data = [
+            { id: 1, name: 'Item 1' },
+            { id: 2, name: 'Item 2' },
+            { id: 3, name: 'Item 3' }
+        ];
+
+        // Function to display data
+        function displayData() {
+            const outputDiv = document.getElementById('output');
+            outputDiv.innerHTML = '<h2>Data:</h2>';
+            data.forEach(item => {
+                outputDiv.innerHTML += `<p>${item.id}: ${item.name}</p>`;
+            });
+        }
+
+        // Create operation
+        function addItem(name) {
+            const newItem = {
+                id: data.length + 1,
+                name: name
+            };
+            data.push(newItem);
+            displayData();
+        }
+
+        // Read operation
+        function getItemById(id) {
+            return data.find(item => item.id === id);
+        }
+
+        // Update operation
+        function updateItem(id, newName) {
+            const itemToUpdate = getItemById(id);
+            if (itemToUpdate) {
+                itemToUpdate.name = newName;
+                displayData();
+            }
+        }
+
+        // Delete operation
+        function deleteItem(id) {
+            data = data.filter(item => item.id !== id);
+            displayData();
+        }
+
+        // Example usage
+        addItem('New Item');
+        updateItem(2, 'Updated Item');
+        deleteItem(3);
+
+    </script>
+
+</body>
+
+</html>
